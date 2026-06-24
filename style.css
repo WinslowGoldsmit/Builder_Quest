@@ -1,0 +1,513 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --sky: #5C94FC;
+  --brick: #B85C38;
+  --brick-dark: #8B4513;
+  --ground: #FCA044;
+  --ground-dark: #D2691E;
+  --pipe: #00A800;
+  --pipe-dark: #006400;
+  --coin: #F8B800;
+  --mario-red: #E60012;
+  --mario-blue: #0045AD;
+  --black: #000000;
+  --white: #FFFFFF;
+  --shadow: rgba(0,0,0,0.3);
+  --text-dark: #1a1a2e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--sky);
+  font-family: 'Inter', sans-serif;
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Pixel borders utility */
+.pixel-box {
+  border: 4px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black), inset -4px -4px 0 var(--shadow);
+  background: var(--brick);
+}
+
+.pixel-btn {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  padding: 14px 18px;
+  border: 4px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.1s, box-shadow 0.1s;
+  image-rendering: pixelated;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.pixel-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--black);
+}
+
+.btn-green { background: var(--pipe); color: var(--white); }
+.btn-green:hover { background: var(--pipe-dark); }
+.btn-gold { background: var(--coin); color: var(--black); }
+.btn-gold:hover { background: #D4A000; }
+.btn-red { background: var(--mario-red); color: var(--white); }
+.btn-red:hover { background: #B3000E; }
+.btn-blue { background: var(--mario-blue); color: var(--white); }
+.btn-blue:hover { background: #003380; }
+
+/* Header */
+.app-header {
+  background: linear-gradient(180deg, var(--mario-red) 0%, var(--mario-red) 85%, var(--black) 85%, var(--black) 100%);
+  padding: 16px;
+  border-bottom: 4px solid var(--black);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.logo {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: var(--white);
+  text-shadow: 3px 3px 0 var(--black);
+}
+
+.coin-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+}
+
+.coin-icon {
+  width: 20px;
+  height: 20px;
+  background: var(--coin);
+  border: 2px solid var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  animation: coinSpin 2s infinite;
+}
+
+@keyframes coinSpin {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.3); }
+}
+
+/* Stats bar */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat-pill {
+  background: var(--black);
+  border: 2px solid var(--white);
+  padding: 6px 8px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+}
+
+.stat-label { color: var(--coin); font-size: 7px; display: block; margin-bottom: 4px; }
+.stat-value { color: var(--white); font-size: 9px; }
+
+/* Navigation */
+.nav-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  background: var(--black);
+  border-bottom: 4px solid var(--white);
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-btn {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  padding: 12px 16px;
+  background: var(--brick);
+  color: var(--white);
+  border: 3px solid var(--black);
+  box-shadow: 3px 3px 0 var(--black);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  min-height: 44px;
+}
+
+.nav-btn.active {
+  background: var(--coin);
+  color: var(--black);
+}
+
+.nav-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0;
+}
+
+/* Main content */
+.main-content {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+/* Cards */
+.card {
+  background: var(--brick);
+  border: 4px solid var(--black);
+  box-shadow: 6px 6px 0 var(--black);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: var(--brick-dark);
+  padding: 12px 16px;
+  border-bottom: 4px solid var(--black);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: var(--white);
+  text-shadow: 2px 2px 0 var(--black);
+}
+
+.card-body {
+  padding: 16px;
+  line-height: 1.6;
+}
+
+/* World badge */
+.world-badge {
+  display: inline-block;
+  background: var(--black);
+  color: var(--coin);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  padding: 6px 10px;
+  border: 2px solid var(--coin);
+  margin-bottom: 12px;
+}
+
+/* Progress bar */
+.hp-bar-container {
+  width: 100%;
+  height: 24px;
+  background: var(--black);
+  border: 3px solid var(--white);
+  position: relative;
+  margin: 12px 0;
+}
+
+.hp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mario-red) 0%, var(--coin) 100%);
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+.hp-bar-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  color: var(--black);
+  text-shadow: 1px 1px 0 var(--white);
+}
+
+/* Task blocks */
+.task-block {
+  background: var(--ground);
+  border: 4px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  margin-bottom: 16px;
+  color: var(--black);
+}
+
+.task-header {
+  background: var(--ground-dark);
+  padding: 10px 14px;
+  border-bottom: 3px solid var(--black);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-body {
+  padding: 14px;
+  font-size: 14px;
+}
+
+.task-body ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.task-body li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Checklist items */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(0,0,0,0.15);
+  border: 2px solid var(--black);
+  margin-bottom: 8px;
+  cursor: pointer;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.check-item:hover { background: rgba(0,0,0,0.25); }
+
+.check-box {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--black);
+  background: var(--white);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.check-item.done .check-box { background: var(--pipe); color: var(--white); }
+.check-item.done { opacity: 0.7; text-decoration: line-through; }
+
+/* Yesterday banner */
+.yesterday-banner {
+  background: var(--mario-blue);
+  border: 4px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.yesterday-banner .yesterday-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  color: var(--coin);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.yesterday-banner .yesterday-text {
+  color: var(--white);
+  font-size: 13px;
+}
+
+.yesterday-banner .yesterday-empty {
+  color: var(--coin);
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* Summary card */
+.summary-card {
+  background: var(--ground);
+  border: 4px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  margin-bottom: 16px;
+  color: var(--black);
+}
+
+.summary-card .summary-header {
+  background: var(--ground-dark);
+  padding: 10px 14px;
+  border-bottom: 3px solid var(--black);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-card .summary-body {
+  padding: 14px;
+}
+
+.summary-card textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 3px solid var(--black);
+  background: var(--white);
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.summary-card textarea:focus {
+  outline: none;
+  border-color: var(--mario-blue);
+  box-shadow: 0 0 0 3px rgba(0,69,173,0.3);
+}
+
+/* Auto-save indicator */
+.autosave-indicator {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 7px;
+  color: var(--pipe);
+  text-align: right;
+  padding: 6px 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.autosave-indicator.visible { opacity: 1; }
+
+/* Prompt box */
+.prompt-box {
+  background: var(--black);
+  border: 4px solid var(--coin);
+  padding: 16px;
+  font-family: 'Inter', monospace;
+  font-size: 13px;
+  color: var(--coin);
+  white-space: pre-wrap;
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+/* Forms */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 3px solid var(--black);
+  background: var(--white);
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  margin-bottom: 12px;
+  min-height: 44px;
+}
+
+label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  color: var(--coin);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Phase colors */
+.phase-1 { border-left: 6px solid var(--mario-red); }
+.phase-2 { border-left: 6px solid var(--pipe); }
+.phase-3 { border-left: 6px solid var(--coin); }
+.phase-4 { border-left: 6px solid var(--mario-blue); }
+
+/* Responsive */
+@media (min-width: 768px) {
+  .logo { font-size: 18px; }
+  .pixel-btn { font-size: 12px; padding: 16px 22px; }
+  .nav-btn { font-size: 10px; padding: 14px 18px; }
+  .card-title { font-size: 12px; }
+  .task-header { font-size: 11px; }
+  .main-content { padding: 24px; }
+  .prompt-box { font-size: 14px; max-height: 500px; }
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.bounce { animation: bounce 0.4s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--coin); border: 2px solid var(--black); }
+
+/* Hidden sections */
+.section { display: none; }
+.section.active { display: block; animation: fadeIn 0.3s ease; }
+
+/* Crisis mode warning */
+.crisis-banner {
+  background: var(--mario-red);
+  border: 4px solid var(--black);
+  padding: 12px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 9px;
+  margin-bottom: 16px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Streak flame */
+.streak-flame {
+  display: inline-block;
+  animation: flicker 0.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+/* Day status badge */
+.day-status {
+  display: inline-block;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  padding: 4px 8px;
+  border: 2px solid var(--black);
+  margin-left: 8px;
+}
+.day-status.done { background: var(--pipe); color: var(--white); }
+.day-status.missed { background: var(--mario-red); color: var(--white); }
+.day-status.active { background: var(--coin); color: var(--black); }
